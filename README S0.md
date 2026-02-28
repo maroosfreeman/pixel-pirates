@@ -5,7 +5,8 @@
 
 Le cœur d'Archipel repose sur **Python 3.11+ avec asyncio** comme langage principal. Dans le contexte d'un hackathon de 24 heures, la productivité prime sur la performance brute, et Python offre l'écosystème cryptographique le plus mature et le plus accessible qui soit.
 
-Pour la découverte des pairs sur le réseau local, le choix s'est porté sur **UDP Multicast** à l'adresse `239.255.42.99:6000`. C'est un standard LAN éprouvé, sans aucune dépendance externe, qui permet à chaque nœud de s'annoncer et d'être découvert automatiquement sans configuration préalable.
+Pour le transport local, Archipel combine deux technologies complémentaires tirées directement du sujet. La découverte des pairs repose sur UDP Multicast à l'adresse 239.255.42.99:6000 : chaque nœud émet un paquet HELLO toutes les 30 secondes à l'ensemble du réseau local, sans établir de connexion, sans cibler un pair en particulier. C'est léger, instantané, et ne nécessite aucune configuration préalable. Une fois les pairs identifiés, le transfert des données bascule sur TCP Sockets (port 7777) : la connexion point-à-point garantit la fiabilité des échanges, le contrôle de flux, et la livraison ordonnée des chunks — indispensable pour des transferts de fichiers volumineux.
+Cette combinaison UDP + TCP est exactement celle préconisée par le document technique : chaque protocole intervient là où il excelle.
 
 Une fois les pairs connus, les transferts de données transitent via **TCP sur le port 7777** avec un encodage TLV (Type-Length-Value). Le protocole TCP garantit la fiabilité des échanges et assure un contrôle de flux natif, indispensable pour des transferts de fichiers volumineux.
 
@@ -18,31 +19,33 @@ Enfin, le stockage local des métadonnées et des index de chunks repose sur **S
 
 ## Schéma d'Architecture
 
-
 ┌─────────────────────────────────────────────────────────────────┐
 │                     RÉSEAU LOCAL (LAN/WiFi)                     │
 │                                                                 │
-│   ┌──────────┐    UDP Multicast     ┌──────────┐               │
-│   │  Nœud A  │◄────────────────────►│  Nœud B  │               │
-│   │          │   239.255.42.99:6000 │          │               │
-│   │ Ed25519  │                      │ Ed25519  │               │
-│   │  KeyPair │◄────────────────────►│  KeyPair │               │
-│   └────┬─────┘    TCP :7777         └────┬─────┘               │
-│        │         (chiffré E2E)           │                     │
-│        │                                 │                     │
-│        └─────────────────────────────────┘                     │
+│   ┌──────────┐   UDP Multicast (découverte)  ┌──────────┐      │
+│   │  Nœud A  │──────────────────────────────►│  Nœud B  │      │
+│   │          │   239.255.42.99:6000  HELLO   │          │      │
+│   │ Ed25519  │◄──────────────────────────────│ Ed25519  │      │
+│   │  KeyPair │                               │  KeyPair │      │
+│   │          │   TCP :7777 (transfert E2E)   │          │      │
+│   │          │◄─────════════════════════════►│          │      │
+│   └────┬─────┘                               └────┬─────┘      │
+│        │                                          │            │
+│        │         TCP :7777 (transfert E2E)        │            │
+│        └──────────════════════════════════────────┘            │
 │                          │                                      │
 │                     ┌────▼─────┐                               │
 │                     │  Nœud C  │   Chaque nœud :               │
-│                     │          │   • Découverte via HELLO UDP  │
-│                     │ Ed25519  │   • Transfert via TCP chiffré │
+│                     │          │   • UDP Multicast → HELLO     │
+│                     │ Ed25519  │   • TCP → transfert chiffré   │
 │                     │  KeyPair │   • Chunks BitTorrent-style   │
 │                     └──────────┘   • Web of Trust (TOFU)      │
 └─────────────────────────────────────────────────────────────────┘
 
 
-## Format de Paquet ARCK v1
 
+
+## Format de Paquet ARCK v1
 
 ┌──────────┬─────────┬────────┬───────┬─────────────┬──────────┐
 │  MAGIC   │ VERSION │  TYPE  │ FLAGS │ PAYLOAD_LEN │ CHECKSUM │
@@ -65,8 +68,6 @@ Enfin, le stockage local des métadonnées et des index de chunks repose sur **S
 Header fixe   : 59 bytes
 Signature     : 64 bytes
 Taille min    : 123 bytes
-```
-
 ### Types de paquets
 
 | Code | Nom | Usage |
