@@ -28,6 +28,14 @@ except Exception:
                 "-> vérifiez le chemin d'exécution"
             ) from e
 
+try:
+    from network.packet import build_json_packet, TYPE_HELLO
+except ImportError:
+    src_dir = str(Path(__file__).resolve().parents[1])
+    if src_dir not in sys.path:
+        sys.path.insert(0, src_dir)
+    from network.packet import build_json_packet, TYPE_HELLO
+
 MULTICAST_GROUP = '239.255.42.99'
 PORT = 6000
 
@@ -44,9 +52,9 @@ def start_discovery(tcp_port: int = 7777):
         sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 2)
 
         while True:
-            # Format du message HELLO : TYPE|NODE_ID|TCP_PORT
-            message = f"HELLO|{my_id}|{tcp_port}"
-            sock.sendto(message.encode(), (MULTICAST_GROUP, PORT))
+            # Format réseau (Magic + Type + NodeId + Len + Payload + HMAC)
+            pkt = build_json_packet(TYPE_HELLO, my_id, {"tcp_port": tcp_port})
+            sock.sendto(pkt, (MULTICAST_GROUP, PORT))
             print(f"📢 HELLO envoyé à {time.strftime('%H:%M:%S')}")
             time.sleep(30)  # Intervalle de 30s selon le sujet
 
