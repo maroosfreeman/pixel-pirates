@@ -1,0 +1,38 @@
+{
+  "files": {
+    "7df6e11b63013c1c94ac7568b23cbd84a47557f1c9b07a62983667c7b8a9e6ad": {
+      "filepath": "downloads\\tmp8sh3c5ak.bin",
+      "manifest": {
+        "file_id": "7df6e11b63013c1c94ac7568b23cbd84a47557f1c9b07a62983667c7b8a9e6ad",
+        "filename": "tmp8sh3c5ak.bin",
+        "size": 1500000,
+        "chunk_size": 524288,
+        "nb_chunks": 3,
+        "chunks": [
+          {
+            "index": 0,
+            "hash": "4df323c5003e394ff2c4495397738d6ea38d3ebe612205dd49185e42b6823141",
+            "size": 524288
+          },
+          {
+            "index": 1,
+            "hash": "e05edae4005a379f4198c5f21f1ad9fab5eedbbf3d3b6146e53c870d1a95fc23",
+            "size": 524288
+          },
+          {
+            "index": 2,
+            "hash": "f176f706f3939f150fe7e1897c8efda637c0df8765990b9a3430a5e5bdeb8d59",
+            "size": 451424
+          }
+        ],
+        "sender_id": "b349e711c30902cfb20e5ff7d3d27a9396b5207f5d0f36f73b0ed3753471ac5a",
+        "signature": "06999d5cc7d7205114c511bd9da97a197f5240cc2a79445bb3933622a2b92ca0fc31685b872ec8387a704c3a7a7df21cb40cf3d494ab5f3b1405261002a55f05"
+      },
+      "chunks_have": [
+        0,
+        1,
+        2
+      ]
+    }
+  }
+}

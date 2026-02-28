@@ -1,0 +1,174 @@
+{
+  "files": {
+    "67e5b536727298a999d0fd2859654269fd79e95563630afad8ec3cfb4dbcfe88": {
+      "filepath": "C:\\Users\\rafar\\AppData\\Local\\Temp\\tmpznr3i9ci.bin",
+      "manifest": {
+        "file_id": "67e5b536727298a999d0fd2859654269fd79e95563630afad8ec3cfb4dbcfe88",
+        "filename": "tmpznr3i9ci.bin",
+        "size": 1500000,
+        "chunk_size": 524288,
+        "nb_chunks": 3,
+        "chunks": [
+          {
+            "index": 0,
+            "hash": "9a922fc0a25d8837d1fd92982b85fefb3687b75317990dca79a1c5912352d7ce",
+            "size": 524288
+          },
+          {
+            "index": 1,
+            "hash": "063ed548cf85154e7f7b37fdd8dafd6d66a50b23fa3cccd9956651065ba6aca1",
+            "size": 524288
+          },
+          {
+            "index": 2,
+            "hash": "5d47f970086c6b55f3e5f143ec8b63e83df7ea4930b89c09037cb62d4eb178f9",
+            "size": 451424
+          }
+        ],
+        "sender_id": "b349e711c30902cfb20e5ff7d3d27a9396b5207f5d0f36f73b0ed3753471ac5a",
+        "signature": ""
+      },
+      "chunks_have": [
+        0,
+        1,
+        2
+      ]
+    },
+    "4d54ca761ef0c513d0afefdfcea87bb683dd139811ebcdadb2000bc73dd49079": {
+      "filepath": "C:\\Users\\rafar\\AppData\\Local\\Temp\\tmprarta_2j.bin",
+      "manifest": {
+        "file_id": "4d54ca761ef0c513d0afefdfcea87bb683dd139811ebcdadb2000bc73dd49079",
+        "filename": "tmprarta_2j.bin",
+        "size": 1500000,
+        "chunk_size": 524288,
+        "nb_chunks": 3,
+        "chunks": [
+          {
+            "index": 0,
+            "hash": "346d9e17be60fc9ae9066ada3efc156800d9900f5d97f23c9d237f3ad3776112",
+            "size": 524288
+          },
+          {
+            "index": 1,
+            "hash": "16bb283b412158c05c3ecfb462b8c28285417c71821e7a217a7bd587d8dede07",
+            "size": 524288
+          },
+          {
+            "index": 2,
+            "hash": "ae4e2d1fdb2c8d70b3ca9a48e491578631287258ab9adbe601221cec9768c221",
+            "size": 451424
+          }
+        ],
+        "sender_id": "b349e711c30902cfb20e5ff7d3d27a9396b5207f5d0f36f73b0ed3753471ac5a",
+        "signature": ""
+      },
+      "chunks_have": [
+        0,
+        1,
+        2
+      ]
+    },
+    "7df6e11b63013c1c94ac7568b23cbd84a47557f1c9b07a62983667c7b8a9e6ad": {
+      "filepath": "C:\\Users\\rafar\\AppData\\Local\\Temp\\tmp8sh3c5ak.bin",
+      "manifest": {
+        "file_id": "7df6e11b63013c1c94ac7568b23cbd84a47557f1c9b07a62983667c7b8a9e6ad",
+        "filename": "tmp8sh3c5ak.bin",
+        "size": 1500000,
+        "chunk_size": 524288,
+        "nb_chunks": 3,
+        "chunks": [
+          {
+            "index": 0,
+            "hash": "4df323c5003e394ff2c4495397738d6ea38d3ebe612205dd49185e42b6823141",
+            "size": 524288
+          },
+          {
+            "index": 1,
+            "hash": "e05edae4005a379f4198c5f21f1ad9fab5eedbbf3d3b6146e53c870d1a95fc23",
+            "size": 524288
+          },
+          {
+            "index": 2,
+            "hash": "f176f706f3939f150fe7e1897c8efda637c0df8765990b9a3430a5e5bdeb8d59",
+            "size": 451424
+          }
+        ],
+        "sender_id": "b349e711c30902cfb20e5ff7d3d27a9396b5207f5d0f36f73b0ed3753471ac5a",
+        "signature": "06999d5cc7d7205114c511bd9da97a197f5240cc2a79445bb3933622a2b92ca0fc31685b872ec8387a704c3a7a7df21cb40cf3d494ab5f3b1405261002a55f05"
+      },
+      "chunks_have": [
+        0,
+        1,
+        2
+      ]
+    },
+    "e3fd37779ec31da84cc32155e4928ed8080f02ce2c9add6489d3e5004e8dc65e": {
+      "filepath": "C:\\Users\\rafar\\AppData\\Local\\Temp\\tmpu3ymcxt3.bin",
+      "manifest": {
+        "file_id": "e3fd37779ec31da84cc32155e4928ed8080f02ce2c9add6489d3e5004e8dc65e",
+        "filename": "tmpu3ymcxt3.bin",
+        "size": 1500000,
+        "chunk_size": 524288,
+        "nb_chunks": 3,
+        "chunks": [
+          {
+            "index": 0,
+            "hash": "930960c8e729e0c59a5f6435dfb4f4827474d193be473fcb4c17d42e475d5186",
+            "size": 524288
+          },
+          {
+            "index": 1,
+            "hash": "8d8e6096ab8c71362527030125317209cc6b8e0051aeb91d4351d2f63f589fad",
+            "size": 524288
+          },
+          {
+            "index": 2,
+            "hash": "b64b1445963e8b61085b69deb6f21a18e224e4a627f6e35dc1667ae335aecd74",
+            "size": 451424
+          }
+        ],
+        "sender_id": "b349e711c30902cfb20e5ff7d3d27a9396b5207f5d0f36f73b0ed3753471ac5a",
+        "signature": ""
+      },
+      "chunks_have": [
+        0,
+        1,
+        2
+      ]
+    },
+    "4f84a25984bd6152446b21c4c25fe339d4f9c0d15d280b6f7a8f1fab4571895a": {
+      "filepath": "C:\\Users\\rafar\\AppData\\Local\\Temp\\tmpveu4kq22.bin",
+      "manifest": {
+        "file_id": "4f84a25984bd6152446b21c4c25fe339d4f9c0d15d280b6f7a8f1fab4571895a",
+        "filename": "tmpveu4kq22.bin",
+        "size": 1500000,
+        "chunk_size": 524288,
+        "nb_chunks": 3,
+        "chunks": [
+          {
+            "index": 0,
+            "hash": "46825fb92d9e9a02130c9f9a02f95f2f08ffac8dd6b50a54c591108142f29827",
+            "size": 524288
+          },
+          {
+            "index": 1,
+            "hash": "f4dc86e614bf9a92b38f864b94ab347fcca3408af1fa7473b3951cf70eabc9bc",
+            "size": 524288
+          },
+          {
+            "index": 2,
+            "hash": "ce1fa63d7ae7b7f28635535bb4ef571758bb14dc1c65d5b30c58652bd00ca4c9",
+            "size": 451424
+          }
+        ],
+        "sender_id": "b349e711c30902cfb20e5ff7d3d27a9396b5207f5d0f36f73b0ed3753471ac5a",
+        "signature": ""
+      },
+      "chunks_have": [
+        0,
+        1,
+        2
+      ]
+    }
+  }
+}

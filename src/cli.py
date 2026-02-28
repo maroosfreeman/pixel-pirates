@@ -30,14 +30,15 @@ def get_node():
     my_signing_key, my_id = get_my_identity()
     return my_signing_key, my_id
 
-def send_file_to_peer(filepath, peer_ip, peer_port, my_id, peer_id, my_signing_key):
+def send_file_to_peer(filepath, peer_ip, peer_port, my_id, peer_id, my_signing_key, storage=None):
     """Envoie un MANIFEST à un pair, initiant le téléchargement de son côté."""
     print(f"Envoi du fichier {filepath} à {peer_id[:16]}...")
     try:
         manifest = build_manifest(filepath, my_id, my_signing_key)
         
-        # Stocke localement pour le servir plus tard
-        storage = LocalStorage()
+        # Stocke localement dans le storage PARTAGÉ pour que le TCPServer puisse servir les chunks
+        if storage is None:
+            storage = LocalStorage()
         storage.add_local_file(filepath, manifest)
 
         # Envoie le manifest au pair (via session chiffrée)
@@ -100,11 +101,11 @@ def main():
         
         # 1. Start TCP Server (with storage)
         storage = LocalStorage()
-        t_tcp = threading.Thread(target=start_tcp_server, args=(peer_table, my_id, my_signing_key, args.port), daemon=True)
+        t_tcp = threading.Thread(target=start_tcp_server, args=(peer_table, my_id, my_signing_key, args.port, storage), daemon=True)
         t_tcp.start()
         
-        # 2. Start Multicast Listener (reçoit les UDP HELLO)
-        t_list = threading.Thread(target=start_listening, args=(my_id, args.port), daemon=True)
+        # 2. Start Multicast Listener (reçoit les UDP HELLO) — partage la peer_table
+        t_list = threading.Thread(target=start_listening, args=(my_id, args.port, peer_table), daemon=True)
         t_list.start()
         
         # 3. Start Multicast Discovery (envoie ses UDP HELLO)
@@ -176,8 +177,10 @@ def main():
                 sys.exit(1)
             target = peer_table.peers[matches[0]]
             args.node_id = matches[0]
-            
-        send_file_to_peer(args.filepath, target["ip"], target["tcp_port"], my_id, args.node_id, my_signing_key)
+
+        # Charge le storage partagé (même fichier que le TCPServer)
+        shared_storage = LocalStorage()
+        send_file_to_peer(args.filepath, target["ip"], target["tcp_port"], my_id, args.node_id, my_signing_key, shared_storage)
 
     elif args.command == "receive":
         storage = LocalStorage()
@@ -212,8 +215,8 @@ def main():
             print("❌ L'hôte d'origine est injoignable.")
             sys.exit(1)
             
-        mgr = TransferManager(storage, None)
-        mgr.fetch_file(manifest, sender_id, target["ip"], target["tcp_port"])
+        mgr = TransferManager(storage)
+        mgr.fetch_file(manifest, target["ip"], target["tcp_port"])
         print("⏳ Téléchargement lancé en tâche de fond. Utilisez 'receive' pour voir le statut.")
 
 if __name__ == "__main__":

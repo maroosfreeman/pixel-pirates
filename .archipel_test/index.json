@@ -1,0 +1,164 @@
+{
+  "files": {
+    "5adc2d3cf02b26810243a3372b83b233ef314c0ff39b87620f5a67fd0c26c591": {
+      "filepath": "C:\\Users\\rafar\\AppData\\Local\\Temp\\tmpwkop2d7p.bin",
+      "manifest": {
+        "file_id": "5adc2d3cf02b26810243a3372b83b233ef314c0ff39b87620f5a67fd0c26c591",
+        "filename": "tmpwkop2d7p.bin",
+        "size": 2097152,
+        "chunk_size": 524288,
+        "nb_chunks": 4,
+        "chunks": [
+          {
+            "index": 0,
+            "hash": "2e159e5b52f2a5664c640000dcf62a4833c86fa52042ecd8d62a47e9196546c9",
+            "size": 524288
+          },
+          {
+            "index": 1,
+            "hash": "3f4c5a69259c934301849989d6c5c61a07e686c5208312e3b241e67bd14793bb",
+            "size": 524288
+          },
+          {
+            "index": 2,
+            "hash": "23b4226827b0045396642a1e321ec020283070164428fcdcf9b5273dee3119ea",
+            "size": 524288
+          },
+          {
+            "index": 3,
+            "hash": "cc0f39cfc78f7aaff2f63901cf4b09c77c4c25e208af3eff1ad88ee57c23433f",
+            "size": 524288
+          }
+        ],
+        "sender_id": "test_node",
+        "signature": ""
+      },
+      "chunks_have": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "cc76581958a46316362a53f36bb713493014756bfae7b39601fc413f92b52447": {
+      "filepath": "C:\\Users\\rafar\\AppData\\Local\\Temp\\tmpy0wtuyfc.bin",
+      "manifest": {
+        "file_id": "cc76581958a46316362a53f36bb713493014756bfae7b39601fc413f92b52447",
+        "filename": "tmpy0wtuyfc.bin",
+        "size": 2097152,
+        "chunk_size": 524288,
+        "nb_chunks": 4,
+        "chunks": [
+          {
+            "index": 0,
+            "hash": "7552e354d63e30df26a0ddb32ed759e54c08046fd40971768312f6f535a533ca",
+            "size": 524288
+          },
+          {
+            "index": 1,
+            "hash": "6c2a4bb720b70dbbbbd1c53ed9f991f85b6c0be90b3cca30d18a0466975d0a43",
+            "size": 524288
+          },
+          {
+            "index": 2,
+            "hash": "6e5cca0caf6b475bd1584c0f64ccbea92912cc3a33c99bd340a3c3b1791d9d75",
+            "size": 524288
+          },
+          {
+            "index": 3,
+            "hash": "9f5073563fb2d13717c02e98ea65142033752aa18ec60253cb09332404af3a68",
+            "size": 524288
+          }
+        ],
+        "sender_id": "test_node",
+        "signature": ""
+      },
+      "chunks_have": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "a74129c791b8f4e3c1949fd448411fabec0d2e4a541d3c2ae31d46495a6bc553": {
+      "filepath": "C:\\Users\\rafar\\AppData\\Local\\Temp\\tmpb_yufxa9.bin",
+      "manifest": {
+        "file_id": "a74129c791b8f4e3c1949fd448411fabec0d2e4a541d3c2ae31d46495a6bc553",
+        "filename": "tmpb_yufxa9.bin",
+        "size": 2097152,
+        "chunk_size": 524288,
+        "nb_chunks": 4,
+        "chunks": [
+          {
+            "index": 0,
+            "hash": "4649db6f3f4cd44e02979b137c0b48d51d2e126401cfaeddc2d304f83ea0a56a",
+            "size": 524288
+          },
+          {
+            "index": 1,
+            "hash": "1c84399cc2ff3b46935ed24bf8f1e66307985d2147dfd726ed0eea05f6dfe47b",
+            "size": 524288
+          },
+          {
+            "index": 2,
+            "hash": "976b492f24851f6f1c9479ef2104dd8b452cc7609edb877e5c1df924adf14e5a",
+            "size": 524288
+          },
+          {
+            "index": 3,
+            "hash": "14ce50a65cd578b9977d5212b0ebb6886f246484a30fc97b42e55bd8a1419324",
+            "size": 524288
+          }
+        ],
+        "sender_id": "test_node",
+        "signature": ""
+      },
+      "chunks_have": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "717b28ca445158e9b050166f475f33e15966b70e4b777762dc983b9b460a82a0": {
+      "filepath": "C:\\Users\\rafar\\AppData\\Local\\Temp\\tmpnxtmh8zv.bin",
+      "manifest": {
+        "file_id": "717b28ca445158e9b050166f475f33e15966b70e4b777762dc983b9b460a82a0",
+        "filename": "tmpnxtmh8zv.bin",
+        "size": 2097152,
+        "chunk_size": 524288,
+        "nb_chunks": 4,
+        "chunks": [
+          {
+            "index": 0,
+            "hash": "4cbabd9ff0a200c75a56fb88cc8ed3558180742b6b87357e91511e85b2e36b53",
+            "size": 524288
+          },
+          {
+            "index": 1,
+            "hash": "053c88e312ce5df08bbccc6e5c3370e0c680c4dd831b1c0d0a5c1a4531d05194",
+            "size": 524288
+          },
+          {
+            "index": 2,
+            "hash": "aa001d248e6a0b538d4f387e64bfc14577dcb8146f947462408cfc22d5f852b3",
+            "size": 524288
+          },
+          {
+            "index": 3,
+            "hash": "de48e5f236143f56a3e07041d09c81fa73371da05b70ad6521643968fcfb2c01",
+            "size": 524288
+          }
+        ],
+        "sender_id": "test_node",
+        "signature": ""
+      },
+      "chunks_have": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}

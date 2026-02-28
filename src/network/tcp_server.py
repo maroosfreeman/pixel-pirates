@@ -97,35 +97,45 @@ def handle_client(conn: socket.socket, addr, peer_table: PeerTable, node_id: str
             threading.Thread(target=keepalive, daemon=True).start()
 
             # Boucle de réception des messages chiffrés
+            consecutive_none = 0
             while True:
                 msg_type, msg = receive_encrypted_message(conn, session)
-                if not msg_type or not msg:
+
+                # None,None peut signifier PING répondu, type ignoré, ou connexion fermée
+                if msg_type is None:
+                    consecutive_none += 1
+                    if consecutive_none >= 3:
+                        # 3 None consécutifs = connexion morte → sortie propre
+                        break
                     continue
+                consecutive_none = 0
 
                 if msg_type == TYPE_MSG:
                     print(f"[TCP] 💬 [{addr[0]}] {msg.get('from','?')[:16]}… : {msg.get('text','')}")
-                    
+
                 elif msg_type == TYPE_MANIFEST:
                     print(f"[TCP] 📄 MANIFEST reçu pour {msg.get('filename')}")
                     if storage and msg.get("file_id") not in storage.files:
                         storage.init_download(msg)
                         print(f"  [TRANSFER] Rapatriement indexé, prêt à télécharger.")
-                        
+
                 elif msg_type == TYPE_CHUNK_REQ:
-                    if not storage: continue
-                    file_id = msg.get("file_id")
+                    if not storage:
+                        continue
+                    file_id   = msg.get("file_id")
                     chunk_idx = msg.get("chunk_idx")
                     data_bytes = storage.get_chunk_data(file_id, chunk_idx)
                     if data_bytes:
-                        payload = {
-                            "file_id": file_id,
-                            "chunk_idx": chunk_idx,
-                            "data": base64.b64encode(data_bytes).decode('ascii'),
+                        payload_out = {
+                            "file_id":    file_id,
+                            "chunk_idx":  chunk_idx,
+                            "data":       base64.b64encode(data_bytes).decode('ascii'),
                             "chunk_hash": hash_data(data_bytes),
-                            "signature": "TODO" # no formal sign here
                         }
-                        send_encrypted_payload(conn, session, TYPE_CHUNK_DATA, node_id, payload)
+                        send_encrypted_payload(conn, session, TYPE_CHUNK_DATA, node_id, payload_out)
                         print(f"[TCP] 📤 CHUNK_DATA {chunk_idx} envoyé")
+                    else:
+                        print(f"[TCP] ⚠️ Chunk {chunk_idx} non trouvé pour {file_id[:8]}…")
 
         # ── Mode Sprint 1 : HELLO / PEER_LIST / PING ─────────────
         else:
@@ -222,8 +232,8 @@ class TCPServer:
             server_sock.close()
 
 
-def start_tcp_server(peer_table: PeerTable, node_id: str, signing_key, port: int = TCP_PORT):
-    TCPServer(peer_table=peer_table, node_id=node_id, my_signing_key=signing_key, port=port).start()
+def start_tcp_server(peer_table: PeerTable, node_id: str, signing_key, port: int = TCP_PORT, storage: LocalStorage = None):
+    TCPServer(peer_table=peer_table, node_id=node_id, my_signing_key=signing_key, port=port, storage=storage).start()
 
 
 if __name__ == "__main__":
