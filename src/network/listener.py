@@ -21,14 +21,14 @@ except ImportError:
         sys.path.insert(0, src_dir)
     from network.peer_table import PeerTable
 
-# Import flexible pour tcp_server (encode_tlv)
+# Import flexible pour tcp_server (encode_tlv) -> packet format
 try:
-    from network.tcp_server import encode_tlv, TLV_PEER_LIST
+    from network.packet import build_json_packet, TYPE_PEER_LIST, parse_packet_bytes, parse_json_payload, TYPE_HELLO
 except ImportError:
     src_dir = str(Path(__file__).resolve().parents[1])
     if src_dir not in sys.path:
         sys.path.insert(0, src_dir)
-    from network.tcp_server import encode_tlv, TLV_PEER_LIST
+    from network.packet import build_json_packet, TYPE_PEER_LIST, parse_packet_bytes, parse_json_payload, TYPE_HELLO
 
 
 def send_peer_list(target_ip: str, target_port: int, peer_table: PeerTable, node_id: str):
@@ -38,7 +38,7 @@ def send_peer_list(target_ip: str, target_port: int, peer_table: PeerTable, node
     """
     try:
         peers = list(peer_table.peers.values())
-        msg   = encode_tlv(TLV_PEER_LIST, {
+        msg = build_json_packet(TYPE_PEER_LIST, node_id, {
             "node_id": node_id,
             "peers":   peers,
         })
@@ -87,16 +87,16 @@ def start_listening(node_id: str, tcp_port: int = 7777):
         sock.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
 
         while True:
-            data, addr = sock.recvfrom(1024)
+            data, addr = sock.recvfrom(2048)
             try:
-                msg = data.decode().split('|')
-            except UnicodeDecodeError:
-                continue  # Paquet malformé, on ignore
-
-            # Vérifie le type de paquet HELLO
-            if len(msg) >= 3 and msg[0] == "HELLO":
-                remote_node_id = msg[1]
-                remote_port    = int(msg[2])
+                pkt_type, remote_node_id, payload_bytes, _ = parse_packet_bytes(data)
+                
+                if pkt_type == TYPE_HELLO:
+                    payload = parse_json_payload(payload_bytes)
+                    remote_port = payload.get("tcp_port", 7777)
+            except Exception as e:
+                # Ignore invalid packets
+                continue
 
                 # Ignore nos propres HELLOs
                 if remote_node_id == node_id:
