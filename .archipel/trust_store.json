@@ -1,24 +1,11 @@
 {
-  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": {
-    "public_key": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "fingerprint": "e0e77a507412b120",
-    "first_seen": 1772252541.8665617,
-    "last_seen": 1772252541.8674018,
-    "trusted": true,
-    "revoked": true,
-    "signed_by": [],
-    "revoke_reason": "test",
-    "revoke_time": 1772252541.8697374
-  },
-  "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
-    "public_key": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "fingerprint": "e0e77a507412b120",
-    "first_seen": 1772252541.8685625,
-    "last_seen": 1772252541.868563,
+  "bba524c010aa23c473b300e7f1ba839fcb4c6eadc91ff0413d589ab1b40b0ef3": {
+    "public_key": "bba524c010aa23c473b300e7f1ba839fcb4c6eadc91ff0413d589ab1b40b0ef3",
+    "fingerprint": "6292eeaa38cbad75",
+    "first_seen": 1772257146.0613568,
+    "last_seen": 1772257860.296476,
     "trusted": true,
     "revoked": false,
-    "signed_by": [
-      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    ]
+    "signed_by": []
   }
 }
