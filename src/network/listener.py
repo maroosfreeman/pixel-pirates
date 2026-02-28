@@ -54,18 +54,17 @@ def send_peer_list(target_ip: str, target_port: int, peer_table: PeerTable, node
         print(f"[UDP→TCP] ⚠️ Impossible d'envoyer PEER_LIST à {target_ip}:{target_port} : {e}")
 
 
-def start_listening(node_id: str, tcp_port: int = 7777):
-    table = PeerTable()
+def start_listening(node_id: str, tcp_port: int = 7777, peer_table: PeerTable = None):
+    # Utilise la peer_table partagée si fournie, sinon en crée une locale
+    table = peer_table if peer_table is not None else PeerTable()
 
-    # Boucle d'affichage et de nettoyage toutes les 5 secondes
-    def refresh_screen():
+    # Nettoyage des vieux pairs toutes les 30s (sans effacer l'écran)
+    def cleanup_peers():
         while True:
-            os.system('cls' if os.name == 'nt' else 'clear')
+            time.sleep(30)
             table.clean_old_peers()
-            table.display()
-            time.sleep(5)
 
-    threading.Thread(target=refresh_screen, daemon=True).start()
+    threading.Thread(target=cleanup_peers, daemon=True).start()
 
     print("👂 Récepteur UDP Multicast actif sur 239.255.42.99:6000")
 
@@ -90,27 +89,29 @@ def start_listening(node_id: str, tcp_port: int = 7777):
             data, addr = sock.recvfrom(2048)
             try:
                 pkt_type, remote_node_id, payload_bytes, _ = parse_packet_bytes(data)
-                
-                if pkt_type == TYPE_HELLO:
-                    payload = parse_json_payload(payload_bytes)
-                    remote_port = payload.get("tcp_port", 7777)
-            except Exception as e:
-                # Ignore invalid packets
+            except Exception:
+                # Ignore les paquets invalides
                 continue
 
-                # Ignore nos propres HELLOs
-                if remote_node_id == node_id:
-                    continue
+            if pkt_type != TYPE_HELLO:
+                continue
 
-                # Met à jour la peer table
-                table.update_peer(remote_node_id, addr[0], remote_port)
+            payload = parse_json_payload(payload_bytes)
+            remote_port = payload.get("tcp_port", 7777)
 
-                # Réponse PEER_LIST en TCP unicast dans un thread séparé
-                threading.Thread(
-                    target=send_peer_list,
-                    args=(addr[0], remote_port, table, node_id),
-                    daemon=True
-                ).start()
+            # Ignore nos propres HELLOs
+            if remote_node_id == node_id:
+                continue
+
+            # Met à jour la peer table
+            table.update_peer(remote_node_id, addr[0], remote_port)
+
+            # Réponse PEER_LIST en TCP unicast dans un thread séparé
+            threading.Thread(
+                target=send_peer_list,
+                args=(addr[0], remote_port, table, node_id),
+                daemon=True
+            ).start()
 
     except KeyboardInterrupt:
         print("\nArrêt du récepteur.")
