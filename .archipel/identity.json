@@ -1,0 +1,10 @@
+{
+  "node_name": "node",
+  "node_id": "eee14b1a10e4aa27e649ccd6e82128d6cb9a460be634d25d2a3e8c1eab364c0b",
+  "public_key": "eee14b1a10e4aa27e649ccd6e82128d6cb9a460be634d25d2a3e8c1eab364c0b",
+  "fingerprint": "0b862fb80b97567c",
+  "algorithm": "Ed25519",
+  "created_at": "2026-02-27T23:49:03.300498",
+  "private_key_seed": "f99b8da03ac62325feeb86e6903a09954b8b2154366fee94ad8bcd982396323f",
+  "WARNING": "NE JAMAIS partager ce fichier. NE JAMAIS le mettre dans git."
+}
