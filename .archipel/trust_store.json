@@ -1,0 +1,24 @@
+{
+  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": {
+    "public_key": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "fingerprint": "e0e77a507412b120",
+    "first_seen": 1772252541.8665617,
+    "last_seen": 1772252541.8674018,
+    "trusted": true,
+    "revoked": true,
+    "signed_by": [],
+    "revoke_reason": "test",
+    "revoke_time": 1772252541.8697374
+  },
+  "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": {
+    "public_key": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "fingerprint": "e0e77a507412b120",
+    "first_seen": 1772252541.8685625,
+    "last_seen": 1772252541.868563,
+    "trusted": true,
+    "revoked": false,
+    "signed_by": [
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ]
+  }
+}
